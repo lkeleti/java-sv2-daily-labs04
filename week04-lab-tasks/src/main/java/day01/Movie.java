@@ -13,6 +13,18 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
+    public String getFilmTitle() {
+        return filmTitle;
+    }
+
+    public int getReleaseDate() {
+        return releaseDate;
+    }
+
+    public List<Actor> getActors() {
+        return List.copyOf(actors);
+    }
+
     public void addActor(Actor actor) {
         actors.add(actor);
     }
