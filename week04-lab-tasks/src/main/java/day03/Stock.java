@@ -1,6 +1,6 @@
 package day03;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Stock {
@@ -10,33 +10,23 @@ public class Stock {
         this.stockList = stockList;
     }
 
-    public double maxProfit(){
-        List<Double> differences = new ArrayList<>();
+    public double maxProfit() {
+        double max = 0;
 
-        double minValue = stockList.get(0);
-        double maxValue = stockList.get(0);
-        double beforeValue = stockList.get(0);
-
-        for (int i = 1; i < stockList.size(); i++) {
-            if (stockList.get(i) > beforeValue) {
-                maxValue = stockList.get(i);
-            }
-            else {
-                differences.add(maxValue-minValue);
-                minValue = stockList.get(i);
-                maxValue = stockList.get(i);
-            }
-            beforeValue = stockList.get(i);
+        for (int i = 0; i < stockList.size(); i++) {
+            max = checkDailyDifferences(max, i);
         }
-        differences.add(maxValue-minValue);
 
-        double maxDifference = differences.get(0);
-
-        for (int i = 1; i < differences.size(); i++) {
-            if (differences.get(i) > maxDifference){
-                maxDifference = differences.get(i);
-            }
-        }
-        return maxDifference;
+        return max;
     }
+
+    public double checkDailyDifferences(double max, int i) {
+        for (int j = i + 1; j < stockList.size(); j++) {
+            if (max < stockList.get(j) - stockList.get(i)) {
+                max = stockList.get(j) - stockList.get(i);
+            }
+        }
+    return max;
+    }
+
 }
